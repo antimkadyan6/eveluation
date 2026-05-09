@@ -1,0 +1,155 @@
+/* ═══════════════════════════════════════════
+   about.css — About Page
+═══════════════════════════════════════════ */
+
+.about-hero {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 480px; border-bottom: 1px solid var(--border);
+  animation: fadeIn .7s ease both;
+}
+.ah-left {
+  padding: 80px 48px; display: flex; flex-direction: column;
+  justify-content: center; gap: 24px; border-right: 1px solid var(--border);
+}
+.ah-right {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface); overflow: hidden;
+}
+.big-q { font-size: 20rem; font-weight: 800; color: var(--border); line-height: 1; user-select: none; letter-spacing: -.06em; }
+
+.page-title {
+  font-size: clamp(2.8rem,6vw,5.5rem); font-weight: 800; letter-spacing: -.04em; line-height: 1;
+}
+.page-title em { font-family: var(--font-serif); font-style: italic; font-weight: 400; color: var(--accent); }
+.about-intro { font-size: 1rem; color: var(--muted); line-height: 1.75; max-width: 420px; }
+
+/* SECTIONS */
+.about-sec { padding: 96px 0; border-bottom: 1px solid var(--border); }
+.bg-surface { background: var(--surface); }
+.about-inner { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+
+/* Fix section-tag and section-title inside about-inner */
+.about-inner .section-tag {
+  display: block;
+  font-family: var(--font-mono); font-size: .7rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+}
+.about-inner .section-title {
+  font-size: clamp(2rem,4vw,3.2rem); font-weight: 800;
+  letter-spacing: -.03em; line-height: 1;
+  margin: 0 0 48px 0;
+  color: var(--text);
+}
+.about-inner .section-title em {
+  font-family: var(--font-serif); font-style: italic;
+  font-weight: 400; color: var(--accent);
+}
+
+/* MISSION GRID */
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  width: 100%;
+}
+.m-card {
+  padding: 36px 28px;
+  border: 1px solid var(--border);
+  background: #181818;
+  transition: transform 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 200px;
+}
+.m-card:hover { transform: translateY(-4px); }
+
+.m-icon {
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+  display: block;
+  line-height: 1;
+}
+.m-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f0ece4;
+  margin: 0 0 10px 0;
+  padding: 0;
+  letter-spacing: -0.02em;
+  display: block;
+}
+.m-desc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.73rem;
+  color: #6b6560;
+  line-height: 1.7;
+  display: block;
+}
+
+/* STATS STRIP */
+.stats-strip {
+  display: flex; align-items: center; justify-content: center;
+  padding: 56px 48px; border-bottom: 1px solid var(--border);
+  background: var(--surface2); flex-wrap: wrap;
+}
+.ss { display: flex; flex-direction: column; align-items: center; padding: 0 48px; }
+.ss-num { font-size: 2.4rem; font-weight: 800; letter-spacing: -.04em; color: var(--accent); line-height: 1; }
+.ss-lbl { font-family: var(--font-mono); font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+.ss-div { width: 1px; height: 48px; background: var(--border); }
+
+/* TEAM */
+.team-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; }
+.team-card { padding: 36px 28px; border: 1px solid var(--border); background: var(--bg); transition: transform var(--ease); }
+.team-card:hover { transform: translateY(-4px); }
+.t-av { width: 52px; height: 52px; border-radius: 50%; background: var(--surface2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; color: var(--accent); margin-bottom: 16px; }
+.team-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; letter-spacing: -.02em; }
+.t-role { font-family: var(--font-mono); font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.t-bio  { font-family: var(--font-mono); font-size: .72rem; color: var(--muted); line-height: 1.7; }
+
+/* FAQ */
+.faq-list { display: flex; flex-direction: column; gap: 2px; }
+.faq-item { border: 1px solid var(--border); background: var(--surface); overflow: hidden; }
+.faq-q {
+  list-style: none; padding: 22px 28px; font-size: .95rem; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 20px;
+  transition: background var(--ease);
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: '+'; font-size: 1.4rem; color: var(--muted); flex-shrink: 0; font-weight: 400; transition: transform var(--ease); }
+details[open] .faq-q::after  { transform: rotate(45deg); color: var(--accent); }
+details[open] .faq-q         { background: var(--surface2); }
+.faq-a { padding: 18px 28px 22px; font-family: var(--font-mono); font-size: .78rem; color: var(--muted); line-height: 1.8; border-top: 1px solid var(--border); }
+
+/* CONTACT */
+.contact-sec { padding: 96px 0 100px; }
+.contact-desc { font-family: var(--font-mono); font-size: .82rem; color: var(--muted); line-height: 1.7; margin-bottom: 36px; }
+.contact-links { display: flex; flex-direction: column; gap: 10px; }
+.c-link {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--font-mono); font-size: .82rem; color: var(--muted);
+  padding: 14px 20px; border: 1px solid var(--border); border-radius: var(--radius);
+  transition: all var(--ease); width: fit-content;
+}
+.c-link:hover { border-color: var(--accent); color: var(--text); background: rgba(232,255,71,.04); }
+
+@media (max-width: 1024px) {
+  .mission-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid { grid-template-columns: repeat(2,1fr); }
+  .about-inner, .contact-sec { padding-left: 28px; padding-right: 28px; }
+  .ah-left { padding: 60px 28px; }
+  .ss { padding: 0 28px; }
+}
+@media (max-width: 768px) {
+  .about-hero { grid-template-columns: 1fr; }
+  .ah-right   { display: none; }
+  .ah-left    { border-right: none; padding: 48px 24px; }
+  .mission-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .about-inner { padding-left: 20px; padding-right: 20px; }
+  .stats-strip { gap: 16px; flex-direction: column; }
+  .ss-div     { width: 40px; height: 1px; }
+  .about-sec  { padding: 64px 0; }
+  .contact-sec { padding: 64px 0 80px; }
+}

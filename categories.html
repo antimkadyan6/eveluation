@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Categories — QuizMaster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="categories.css">
+</head>
+<body>
+<div class="noise"></div>
+ 
+<nav class="navbar">
+  <div class="nav-logo">Quiz<span>Master</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="categories.html" class="active">Categories</a></li>
+    <li><a href="leaderboard.html">Leaderboard</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="quiz.html" class="nav-cta">Play Now</a>
+</nav>
+ 
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <p class="section-tag">// 6 topics available</p>
+  <h1 class="page-title">All <em>Categories</em></h1>
+  <p class="page-desc">Choose a subject, beat the 20-second timer on each question, and top the leaderboard.</p>
+</section>
+ 
+<!-- INFO BAR -->
+<div class="info-bar">
+  <div class="ib-item"><span class="ib-icon">⏱</span> 20 seconds per question</div>
+  <div class="ib-sep"></div>
+  <div class="ib-item"><span class="ib-icon">❓</span> 10 questions per quiz</div>
+  <div class="ib-sep"></div>
+  <div class="ib-item"><span class="ib-icon">🏆</span> Score tracked on leaderboard</div>
+</div>
+ 
+<!-- CATEGORIES -->
+<main class="cats-main">
+ 
+  <!-- SCIENCE -->
+  <div class="cat-group">
+    <h2 class="group-title">🔬 Science</h2>
+    <div class="cat-group-grid">
+      <a href="quiz.html?cat=science" class="cat-card" style="--cc:#3a8fff">
+        <div class="cat-icon">⚗️</div>
+        <h3>Science</h3>
+        <p>Physics, Chemistry, Biology &amp; Space exploration</p>
+        <span class="cat-count">10 Questions · 20s timer</span>
+        <div class="diff-badge diff-medium">Medium</div>
+        <div class="cat-arrow">→</div>
+      </a>
+    </div>
+  </div>
+ 
+  <!-- HISTORY -->
+  <div class="cat-group">
+    <h2 class="group-title">🏛️ History</h2>
+    <div class="cat-group-grid">
+      <a href="quiz.html?cat=history" class="cat-card" style="--cc:#ff5c3a">
+        <div class="cat-icon">🏛️</div>
+        <h3>History</h3>
+        <p>Ancient civilisations, world wars &amp; modern events</p>
+        <span class="cat-count">10 Questions · 20s timer</span>
+        <div class="diff-badge diff-medium">Medium</div>
+        <div class="cat-arrow">→</div>
+      </a>
+    </div>
+  </div>
+ 
+  <!-- GEOGRAPHY -->
+  <div class="cat-group">
+    <h2 class="group-title">🌍 Geography</h2>
+    <div class="cat-group-grid">
+      <a href="quiz.html?cat=geography" class="cat-card" style="--cc:#4cde7f">
+        <div class="cat-icon">🌍</div>
+        <h3>Geography</h3>
+        <p>Countries, capitals, rivers, oceans &amp; maps</p>
+        <span class="cat-count">10 Questions · 20s timer</span>
+        <div class="diff-badge diff-easy">Easy</div>
+        <div class="cat-arrow">→</div>
+      </a>
+    </div>
+  </div>
+ 
+  <!-- TECHNOLOGY -->
+  <div class="cat-group">
+    <h2 class="group-title">💻 Technology</h2>
+    <div class="cat-group-grid">
+      <a href="quiz.html?cat=technology" class="cat-card" style="--cc:#e8ff47">
+        <div class="cat-icon">💻</div>
+        <h3>Technology</h3>
+        <p>Coding, gadgets, AI, internet &amp; tech companies</p>
+        <span class="cat-count">10 Questions · 20s timer</span>
+        <div class="diff-badge diff-easy">Easy</div>
+        <div class="cat-arrow">→</div>
+      </a>
+    </div>
+  </div>
+ 
+  <!-- SPORTS -->
+  <div class="cat-group">
+    <h2 class="group-title">⚽ Sports</h2>
+    <div class="cat-group-grid">
+      <a href="quiz.html?cat=sports" class="cat-card" style="--cc:#ff3a7a">
+        <div class="cat-icon">⚽</div>
+        <h3>Sports</h3>
+        <p>Football, cricket, Olympics, tennis &amp; more</p>
+        <span class="cat-count">10 Questions · 20s timer</span>
+        <div class="diff-badge diff-easy">Easy</div>
+        <div class="cat-arrow">→</div>
+      </a>
+    </div>
+  </div>
+ 
+  <!-- POP CULTURE -->
+  <div class="cat-group">
+    <h2 class="group-title">🎬 Pop Culture</h2>
+    <div class="cat-group-grid">
+      <a href="quiz.html?cat=popculture" class="cat-card" style="--cc:#c03aff">
+        <div class="cat-icon">🎬</div>
+        <h3>Pop Culture</h3>
+        <p>Movies, music, memes, celebs &amp; viral moments</p>
+        <span class="cat-count">10 Questions · 20s timer</span>
+        <div class="diff-badge diff-easy">Easy</div>
+        <div class="cat-arrow">→</div>
+      </a>
+    </div>
+  </div>
+ 
+</main>
+ 
+<footer class="footer">
+  <div class="footer-logo">Quiz<span>Master</span></div>
+  <p class="footer-copy">© 2025 QuizMaster · Built with HTML, CSS &amp; JS</p>
+  <ul class="footer-links">
+    <li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="about.html">Contact</a></li>
+  </ul>
+</footer>
+</body>
+</html>

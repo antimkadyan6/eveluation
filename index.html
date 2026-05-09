@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QuizMaster — Test Your Knowledge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+ 
+<div class="noise"></div>
+ 
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-logo">Quiz<span>Master</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="categories.html">Categories</a></li>
+    <li><a href="leaderboard.html">Leaderboard</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="quiz.html" class="nav-cta">Play Now</a>
+</nav>
+ 
+<!-- ░░ HERO ░░ -->
+<section class="hero">
+  <div class="hero-tag">— Est. 2025 · Knowledge Arena</div>
+ 
+  <h1 class="hero-title">
+    Challenge<br>
+    <em>Your Mind.</em><br>
+    <span class="outline-text">Conquer</span><br>
+    Every Quiz.
+  </h1>
+ 
+  <div class="hero-right">
+    <p class="hero-desc">
+      Thousands of questions across Science, History, Geography,
+      Pop Culture and more. Compete. Learn. Repeat.
+    </p>
+    <div class="hero-actions">
+      <a href="quiz.html"       class="btn btn-primary">Start Quiz →</a>
+      <a href="categories.html" class="btn btn-ghost">Browse Topics</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">12K+</span>
+        <span class="stat-label">Questions</span>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <span class="stat-num">6</span>
+        <span class="stat-label">Categories</span>
+      </div>
+      <div class="stat-div"></div>
+      <div class="stat">
+        <span class="stat-num">200K</span>
+        <span class="stat-label">Players</span>
+      </div>
+    </div>
+  </div>
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>Science</span><span>·</span>
+      <span>History</span><span>·</span>
+      <span>Geography</span><span>·</span>
+      <span>Technology</span><span>·</span>
+      <span>Sports</span><span>·</span>
+      <span>Pop Culture</span><span>·</span>
+      <span>Science</span><span>·</span>
+      <span>History</span><span>·</span>
+      <span>Geography</span><span>·</span>
+      <span>Technology</span><span>·</span>
+      <span>Sports</span><span>·</span>
+      <span>Pop Culture</span><span>·</span>
+    </div>
+  </div>
+</section>
+ 
+<!-- ░░ CATEGORIES PREVIEW ░░ -->
+<section class="home-cats" id="categories">
+  <div class="home-cats-inner">
+    <div class="section-header">
+      <p class="section-tag">// explore topics</p>
+      <h2 class="section-title">Pick Your <em>Battlefield</em></h2>
+    </div>
+    <div class="cat-grid">
+      <a href="quiz.html?cat=science"    class="cat-card" style="--cc:#3a8fff">
+        <div class="cat-icon">⚗️</div><h3>Science</h3>
+        <p>Physics, Chemistry, Biology &amp; Space</p>
+        <span class="cat-count">10 Questions</span><div class="cat-arrow">→</div>
+      </a>
+      <a href="quiz.html?cat=history"    class="cat-card" style="--cc:#ff5c3a">
+        <div class="cat-icon">🏛️</div><h3>History</h3>
+        <p>Ancient civilisations to modern wars</p>
+        <span class="cat-count">10 Questions</span><div class="cat-arrow">→</div>
+      </a>
+      <a href="quiz.html?cat=geography"  class="cat-card" style="--cc:#4cde7f">
+        <div class="cat-icon">🌍</div><h3>Geography</h3>
+        <p>Countries, capitals, rivers &amp; maps</p>
+        <span class="cat-count">10 Questions</span><div class="cat-arrow">→</div>
+      </a>
+      <a href="quiz.html?cat=technology" class="cat-card" style="--cc:#e8ff47">
+        <div class="cat-icon">💻</div><h3>Technology</h3>
+        <p>Coding, gadgets, AI &amp; the internet</p>
+        <span class="cat-count">10 Questions</span><div class="cat-arrow">→</div>
+      </a>
+      <a href="quiz.html?cat=sports"     class="cat-card" style="--cc:#ff3a7a">
+        <div class="cat-icon">⚽</div><h3>Sports</h3>
+        <p>Football, cricket, Olympics &amp; more</p>
+        <span class="cat-count">10 Questions</span><div class="cat-arrow">→</div>
+      </a>
+      <a href="quiz.html?cat=popculture" class="cat-card" style="--cc:#c03aff">
+        <div class="cat-icon">🎬</div><h3>Pop Culture</h3>
+        <p>Movies, music, memes &amp; celebrities</p>
+        <span class="cat-count">10 Questions</span><div class="cat-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+ 
+<!-- ░░ HOW IT WORKS ░░ -->
+<section class="how">
+  <div class="how-inner">
+    <div class="section-header">
+      <p class="section-tag">// how it works</p>
+      <h2 class="section-title">Three Steps to <em>Glory</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Choose a Category</h3>
+        <p>Pick from 6 topics — Science, History, Geography, Tech, Sports or Pop Culture.</p>
+      </div>
+      <div class="step-conn"></div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Beat the Clock</h3>
+        <p>20 seconds per question. Race against the timer — every correct answer earns points.</p>
+      </div>
+      <div class="step-conn"></div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Claim the Top Spot</h3>
+        <p>Check the leaderboard. Can you make it to #1?</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ░░ CTA BANNER ░░ -->
+<section class="cta-banner">
+  <div class="cta-inner">
+    <p class="cta-sub">Ready to prove yourself?</p>
+    <h2 class="cta-title">Start Your First Quiz <em>Right Now.</em></h2>
+    <a href="quiz.html" class="btn btn-primary btn-large">Launch Quiz →</a>
+  </div>
+  <div class="cta-deco">?</div>
+</section>
+ 
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">Quiz<span>Master</span></div>
+  <p class="footer-copy">© 2025 QuizMaster · Built with HTML, CSS &amp; JS</p>
+  <ul class="footer-links">
+    <li><a href="#">Privacy</a></li>
+    <li><a href="#">Terms</a></li>
+    <li><a href="about.html">Contact</a></li>
+  </ul>
+</footer>
+ 
+</body>
+</html>
+ 

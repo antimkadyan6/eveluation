@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz — QuizMaster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+<div class="noise"></div>
+ 
+<nav class="navbar">
+  <div class="nav-logo">Quiz<span>Master</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="categories.html">Categories</a></li>
+    <li><a href="leaderboard.html">Leaderboard</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="index.html" class="nav-cta">← Home</a>
+</nav>
+ 
+<!-- ══ SCREEN 1: CATEGORY SELECT ══ -->
+<div id="screen-select" class="screen active">
+  <div class="select-wrap">
+    <p class="section-tag">// choose your subject</p>
+    <h1 class="select-title">Pick Your <em>Challenge</em></h1>
+    <p class="select-desc">10 questions · 20 seconds per question · Total 200 seconds</p>
+    <div class="sel-grid" id="sel-grid"></div>
+  </div>
+</div>
+ 
+<!-- ══ SCREEN 2: QUIZ ══ -->
+<div id="screen-quiz" class="screen">
+  <div class="quiz-wrap">
+ 
+    <!-- TOP BAR -->
+    <div class="quiz-topbar">
+      <div class="qtb-left">
+        <div class="qtb-label">// current subject</div>
+        <div class="qtb-name" id="qtb-name">—</div>
+      </div>
+      <div class="qtb-timers">
+        <div class="tot-box">
+          <span class="tot-lbl">Total Time</span>
+          <span class="tot-val" id="tot-val">3:20</span>
+        </div>
+        <div class="q-ring">
+          <svg width="56" height="56" viewBox="0 0 56 56">
+            <circle class="ring-bg" cx="28" cy="28" r="22"/>
+            <circle class="ring-fg" id="ring-fg" cx="28" cy="28" r="22"
+              stroke-dasharray="138.2" stroke-dashoffset="0"/>
+          </svg>
+          <div class="ring-num" id="ring-num">20</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- PROGRESS -->
+    <div class="q-progress">
+      <div class="qp-info">
+        <span class="qp-txt" id="qp-txt">Question 1 of 10</span>
+        <span class="qp-txt" id="qp-score">Score: 0</span>
+      </div>
+      <div class="qp-bar-wrap"><div class="qp-bar" id="qp-bar" style="width:0%"></div></div>
+    </div>
+ 
+    <!-- QUESTION CARD -->
+    <div class="q-card" id="q-card">
+      <div class="q-num"  id="q-num">Question 01 / 10</div>
+      <div class="q-text" id="q-text">—</div>
+      <div class="q-opts" id="q-opts"></div>
+      <div class="q-fb"   id="q-fb"></div>
+    </div>
+ 
+    <div class="next-wrap" id="next-wrap">
+      <button class="btn-next" id="btn-next">Next Question →</button>
+    </div>
+ 
+  </div>
+</div>
+ 
+<!-- ══ SCREEN 3: RESULT ══ -->
+<div id="screen-result" class="screen">
+  <div class="result-wrap">
+    <p class="res-tag"   id="res-tag">// result</p>
+    <h1 class="res-title" id="res-title">Quiz <em>Complete!</em></h1>
+ 
+    <div class="score-ring-wrap">
+      <div class="score-ring">
+        <svg width="160" height="160" viewBox="0 0 160 160">
+          <circle class="sr-bg" cx="80" cy="80" r="68"/>
+          <circle class="sr-fg" id="sr-fg" cx="80" cy="80" r="68"
+            stroke-dasharray="427.3" stroke-dashoffset="427.3"/>
+        </svg>
+        <div class="sr-inner">
+          <span class="sr-num" id="sr-num">0</span>
+          <span class="sr-den" id="sr-den">/ 10</span>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="res-stats">
+      <div class="rs"><div class="rs-v" id="rs-cor">0</div><div class="rs-l">Correct</div></div>
+      <div class="rs"><div class="rs-v" id="rs-wrg">0</div><div class="rs-l">Wrong</div></div>
+      <div class="rs"><div class="rs-v" id="rs-skp">0</div><div class="rs-l">Skipped</div></div>
+      <div class="rs"><div class="rs-v" id="rs-acc">0%</div><div class="rs-l">Accuracy</div></div>
+      <div class="rs"><div class="rs-v" id="rs-tim">0s</div><div class="rs-l">Time Used</div></div>
+    </div>
+ 
+    <p class="res-msg" id="res-msg"></p>
+ 
+    <div class="res-btns">
+      <button class="btn btn-primary" id="btn-retry">↩ Retry This Quiz</button>
+      <button class="btn btn-ghost"   id="btn-pick">← Pick Another Subject</button>
+    </div>
+ 
+    <div class="review-hdr">// answer review</div>
+    <div id="review-list"></div>
+ 
+    <!-- MY HISTORY -->
+    <div class="history-section">
+      <div class="history-hdr">
+        <span>// my quiz history</span>
+        <button class="btn-clear-hist" onclick="clearHistoryUI()">🗑 Clear History</button>
+      </div>
+      <div id="history-list"></div>
+    </div>
+  </div>
+</div>
+ 
+<script src="quiz.js"></script>
+</body>
+</html>
+ 

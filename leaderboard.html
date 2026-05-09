@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Leaderboard — QuizMaster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="leaderboard.css">
+</head>
+<body>
+<div class="noise"></div>
+
+<nav class="navbar">
+  <div class="nav-logo">Quiz<span>Master</span></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="categories.html">Categories</a></li>
+    <li><a href="leaderboard.html" class="active">Leaderboard</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+  <a href="quiz.html" class="nav-cta">Play Now</a>
+</nav>
+
+<!-- HERO + PODIUM -->
+<section class="lb-hero">
+  <div class="lb-hero-text">
+    <p class="section-tag">// global rankings</p>
+    <h1 class="page-title">Leader<em>board</em></h1>
+    <p class="page-desc">Top players from around the world. Can you make it here?</p>
+  </div>
+
+  <div class="podium">
+    <div class="pod-card pod-2">
+      <div class="pod-avatar">AK</div>
+      <div class="pod-name">Arjun K.</div>
+      <div class="pod-score">9,840</div>
+      <div class="pod-rank">#2</div>
+      <div class="pod-base" style="height:80px">🥈</div>
+    </div>
+    <div class="pod-card pod-1">
+      <div class="pod-crown">👑</div>
+      <div class="pod-avatar">RS</div>
+      <div class="pod-name">Riya S.</div>
+      <div class="pod-score">12,450</div>
+      <div class="pod-rank">#1</div>
+      <div class="pod-base" style="height:110px">🥇</div>
+    </div>
+    <div class="pod-card pod-3">
+      <div class="pod-avatar">MV</div>
+      <div class="pod-name">Mihir V.</div>
+      <div class="pod-score">8,620</div>
+      <div class="pod-rank">#3</div>
+      <div class="pod-base" style="height:60px">🥉</div>
+    </div>
+  </div>
+</section>
+
+<!-- TABS -->
+<div class="lb-tabs">
+  <button class="lb-tab lb-tab-active" onclick="switchTab(this,'global')">🌍 Global</button>
+  <button class="lb-tab" onclick="switchTab(this,'mine')">👤 My Results</button>
+</div>
+
+<!-- TABLE -->
+<main class="lb-main">
+
+  <!-- MY RESULTS PANEL -->
+  <div id="panel-mine" style="display:none">
+    <div id="my-results-list"></div>
+    <div class="my-clear-wrap">
+      <button class="btn-clear-my" onclick="clearMyResults()">🗑 Clear My History</button>
+    </div>
+  </div>
+
+  <!-- GLOBAL TABLE PANEL -->
+  <div id="panel-global">
+    <!-- USER POSITION BANNER -->
+    <div id="user-pos-banner" class="user-pos-banner" style="display:none"></div>
+
+  <div class="lb-table-wrap">
+    <table class="lb-table">
+      <thead>
+        <tr>
+          <th>Rank</th><th>Player</th><th>Country</th>
+          <th>Quizzes</th><th>Accuracy</th><th>Score</th>
+        </tr>
+      </thead>
+      <tbody id="global-tbody"></tbody>
+    </table>
+  </div>
+
+  </div><!-- /panel-global -->
+
+  <div class="lb-cta">
+    <p>Think you can beat them?</p>
+    <a href="quiz.html" class="btn btn-primary">Start a Quiz →</a>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-logo">Quiz<span>Master</span></div>
+  <p class="footer-copy">© 2025 QuizMaster · Built with HTML, CSS &amp; JS</p>
+  <ul class="footer-links">
+    <li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="about.html">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+
+// har player mein yeh information hai : name-player ka naam ; handle-username;flage-country ka emoji;quizzes-kitni quiz khelee;score-kitne sahi jawab,accuracy-percentage
+const GLOBAL_PLAYERS = [
+  { name:'Riya Sharma',   handle:'@riya_quizpro', flag:'🇮🇳', quizzes:248, score:10, total:10, accuracy:96 },
+  { name:'Arjun Kumar',   handle:'@arjun_k',      flag:'🇮🇳', quizzes:201, score:10, total:10, accuracy:92 },
+  { name:'Mihir Verma',   handle:'@mihir_v',       flag:'🇮🇳', quizzes:189, score:9,  total:10, accuracy:89 },
+  { name:'Lucas Pereira', handle:'@lucas_p',       flag:'🇧🇷', quizzes:176, score:9,  total:10, accuracy:84 },
+  { name:'Sara Kim',      handle:'@sara_kim',      flag:'🇰🇷', quizzes:162, score:8,  total:10, accuracy:91 },
+  { name:'Ahmed Malik',   handle:'@ahmed_m',       flag:'🇵🇰', quizzes:155, score:8,  total:10, accuracy:80 },
+  { name:'Nina Bauer',    handle:'@nina_b',        flag:'🇩🇪', quizzes:143, score:7,  total:10, accuracy:82 },
+  { name:'Priya Desai',   handle:'@priya_d',       flag:'🇮🇳', quizzes:138, score:7,  total:10, accuracy:78 },
+  { name:'James Thornton',handle:'@j_thornton',    flag:'🇬🇧', quizzes:129, score:6,  total:10, accuracy:75 },
+  { name:'Yuki Zhao',     handle:'@yuki_z',        flag:'🇨🇳', quizzes:121, score:6,  total:10, accuracy:71 },
+];
+
+// agar file me koi problem ho to vo file khali dikha do
+function getHistory() {
+  try { return JSON.parse(localStorage.getItem('quizmaster_history')) || []; }
+  catch { return []; }
+}
+
+// clear history button ka kaam karta hai phele ek popup aata hai ok kerte hi sara data delete ker deta hai
+function clearMyResults() {
+  if (confirm('Clear all your quiz history?')) {
+    localStorage.removeItem('quizmaster_history');
+    renderMyResults();
+  }
+}
+// Score aur accuracy dono milaake ek final number banata hai 
+function combinedScore(score, total, accuracy) {
+  return Math.round((score / total) * 70 + accuracy * 0.30);
+}
+
+
+// global ya results tab click karo toh screen badalta hai 
+function switchTab(btn, tab) {
+  document.querySelectorAll('.lb-tab').forEach(b => b.classList.remove('lb-tab-active'));
+  btn.classList.add('lb-tab-active');
+  document.getElementById('panel-global').style.display = tab === 'global' ? 'block' : 'none';
+  document.getElementById('panel-mine').style.display   = tab === 'mine'   ? 'block' : 'none';
+  if (tab === 'global') renderGlobal();
+  if (tab === 'mine')   renderMyResults();
+}
+
+// user ki history uthao browser se
+function renderGlobal() {
+  const h = getHistory();
+
+// user ka best attempt dhundho -sab results mein se highest combined score wala . 
+// reduce - list mein se ek best items dhundne ka tarika hai
+  let userEntry = null;
+  if (h.length > 0) {
+    const best = h.reduce((a, b) => (b.combinedScore||0) > (a.combinedScore||0) ? b : a);
+    
+    // user ka ek entry banao-bilkul global players jaisi -taaki table mein mix ho sake
+    // isUser:true-ye pehchaan ke liye hai ki yeh user hai,global player nahi.
+    userEntry = {
+      name:     'Antim',
+      handle:   '@antim',
+      flag:     '🏠',
+      quizzes:  h.length,
+      score:    best.score,
+      total:    best.total,
+      accuracy: best.accuracy,
+      isUser:   true,
+      cat:      best.catName,
+      combined: best.combinedScore || combinedScore(best.score, best.total, best.accuracy),
+    };
+  }
+
+  // global player ka combined score calculate karo ...p-spread operator -player ki saari purani info copy karo,sirf combined,
+  // aur isUser nayi add karo.
+  const players = GLOBAL_PLAYERS.map(p => ({
+  
+    ...p, combined: combinedScore(p.score, p.total, p.accuracy), isUser: false,
+  }));
+
+  // dono milaao aur sort karo-highest score sabse upar
+  const all = userEntry ? [...players, userEntry] : players;
+  all.sort((a,b) => b.combined - a.combined);
+
+  const userRank = userEntry ? all.findIndex(p => p.isUser) + 1 : null;
+
+  const tbody = document.getElementById('global-tbody');
+
+  // har player ka table row banao ,initials-naam ke pehle letters: user ke liye -me
+  tbody.innerHTML = all.map((p, i) => {
+    const rank  = i + 1;
+    const isTop = rank <= 3;
+    const badgeCls = rank===1?'rb-gold':rank===2?'rb-silver':rank===3?'rb-bronze':'';
+    const rowCls   = p.isUser ? 'lb-user-row' : rank===1?'lb-gold':rank===2?'lb-silver':rank===3?'lb-bronze':'';
+    const pct      = p.score / p.total;
+    const accCls   = pct>=.7?'acc-high':pct>=.4?'acc-mid':'acc-low';
+    const initials = p.isUser ? 'ME' : p.name.split(' ').map(w=>w[0]).join('').slice(0,2);
+    const combined = p.combined;
+
+    // table row ka html banata hai-rank,naam,avatar sab.
+    // user ki row mein extra "you" yellow badge lagta hai-taaki easily pehchaan ho.
+    return `<tr class="${rowCls}">
+      <td><span class="rank-badge ${badgeCls}">${rank}</span></td>
+      <td>
+        <div class="player-cell">
+          <div class="av ${p.isUser?'av-user':''}">${initials}</div>
+          <div>
+            <div class="pname">${p.name}${p.isUser?' <span class="you-tag">YOU</span>':''}</div>
+            <div class="psub">${p.handle}${p.isUser?' · Best: '+p.cat:''}</div>
+          </div>
+        </div>
+      </td>
+      <td>${p.flag} ${p.isUser?'—':p.name.split(' ')[1]||''}</td>
+      <td>${p.quizzes}</td>
+      <td><span class="acc ${accCls}">${p.accuracy}%</span></td>
+      <td>
+        <strong>${p.score}/${p.total}</strong>
+        <span class="combined-score">${combined}pts</span>
+      </td>
+    </tr>`;
+  }).join('');
+
+  // Show user position banner if user exists
+  const banner = document.getElementById('user-pos-banner');
+  if (userEntry && userRank) {
+    const emoji = userRank === 1 ? '🏆' : userRank <= 3 ? '🥈' : userRank <= 5 ? '🎯' : '📈';
+    banner.innerHTML = `${emoji} Your current global position: <strong>#${userRank}</strong> — Combined Score: <strong>${userEntry.combined} pts</strong>`;
+    banner.style.display = 'block';
+  } else {
+    banner.innerHTML = '🎮 Take a quiz to appear on the global leaderboard!';
+    banner.style.display = 'block';
+  }
+}
+
+// my result tab ka poora content banata hai .agar history khaali hai toh message dikhao aur band karo.
+function renderMyResults() {
+  const list = document.getElementById('my-results-list');
+  const h    = getHistory();
+
+  if (h.length === 0) {
+    list.innerHTML = '<div class="my-empty">No results yet. <a href="quiz.html">Take a quiz →</a></div>';
+    return;
+  }
+
+
+  // 4 summary numbers calculate karo
+  const totalQuizzes = h.length;
+  const avgScore     = (h.reduce((s,r) => s + r.score, 0) / totalQuizzes).toFixed(1);
+  const avgAcc       = Math.round(h.reduce((s,r) => s + r.accuracy, 0) / totalQuizzes);
+  const bestCombined = Math.max(...h.map(r => r.combinedScore || combinedScore(r.score, r.total, r.accuracy)));
+
+  // Rank each attempt against global
+  const allGlobalCombined = GLOBAL_PLAYERS.map(p => combinedScore(p.score, p.total, p.accuracy)).sort((a,b)=>b-a);
+
+  const rows = h.map((r, i) => {
+    const cs     = r.combinedScore || combinedScore(r.score, r.total, r.accuracy);
+    const rank   = allGlobalCombined.filter(g => g > cs).length + 1;
+    const pct    = r.score / r.total;
+    const col    = pct >= .7 ? '#4cde7f' : pct >= .4 ? '#e8ff47' : '#ff5c3a';
+    const accCls = pct >= .7 ? 'acc-high' : pct >= .4 ? 'acc-mid' : 'acc-low';
+    const rankBadge = rank===1?'rb-gold':rank===2?'rb-silver':rank===3?'rb-bronze':'';
+    
+    // har attempt ka table row banao-rank,subject,score,accuracy,time,combined sab
+    return `<tr>
+      <td><span class="rank-badge ${rankBadge}">#${rank}</span></td>
+      <td>
+        <div class="player-cell">
+          <div class="av">${r.catIcon}</div>
+          <div><div class="pname">${r.catName}</div><div class="psub">${r.date} · ${r.time}</div></div>
+        </div>
+      </td>
+      <td><span style="color:${col};font-weight:800">${r.score}/${r.total}</span></td>
+      <td><span class="acc ${accCls}">${r.accuracy}%</span></td>
+      <td class="psub">${r.timeUsed}s</td>
+      <td><span class="combined-score">${cs}pts</span></td>
+    </tr>`;
+  }).join('');
+
+
+  //4 summary cards dikho phir neeche table
+  list.innerHTML = `
+    <div class="my-summary">
+      <div class="ms-card"><div class="ms-val">${totalQuizzes}</div><div class="ms-lbl">Quizzes Taken</div></div>
+      <div class="ms-card"><div class="ms-val">${avgScore}/10</div><div class="ms-lbl">Avg Score</div></div>
+      <div class="ms-card"><div class="ms-val">${avgAcc}%</div><div class="ms-lbl">Avg Accuracy</div></div>
+      <div class="ms-card"><div class="ms-val">${bestCombined}pts</div><div class="ms-lbl">Best Combined</div></div>
+    </div>
+    <div class="lb-table-wrap" style="margin-top:24px">
+      <table class="lb-table">
+        <thead>
+          <tr><th>Rank</th><th>Subject</th><th>Score</th><th>Accuracy</th><th>Time</th><th>Combined</th></tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+}
+
+/* ══ INIT ══ */
+renderGlobal();
+</script>
+</body>
+</html>
