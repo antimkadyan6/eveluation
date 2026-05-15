@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuizMaster | Auth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Syne', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        radial-gradient(circle at top left, rgba(138,109,255,.20), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(192,58,255,.18), transparent 28%),
+        #0b0b12;
+      color: #fff;
+      padding: 20px;
+    }
+
+    .auth-wrap {
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .auth-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 34px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 30px 80px rgba(0,0,0,.35);
+    }
+
+    .brand {
+      font-size: 30px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .brand span { color: #8a6dff; }
+
+    .topline {
+      font-size: 13px;
+      color: rgba(255,255,255,.68);
+      margin-bottom: 22px;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .tab-btn {
+      border: 0;
+      padding: 13px 16px;
+      border-radius: 14px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      color: rgba(255,255,255,.8);
+      background: rgba(255,255,255,.07);
+      transition: .25s ease;
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, #8a6dff, #c03aff);
+      color: #fff;
+      box-shadow: 0 10px 28px rgba(138,109,255,.35);
+    }
+
+    .form {
+      display: none;
+      gap: 16px;
+      animation: fade .22s ease;
+    }
+
+    .form.active { display: grid; }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: rgba(255,255,255,.86);
+    }
+
+    .field input {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      padding: 14px 16px;
+      border-radius: 14px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .field input:focus {
+      border-color: #8a6dff;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: rgba(255,255,255,.76);
+      flex-wrap: wrap;
+    }
+
+    .row a {
+      color: #8a6dff;
+      text-decoration: none;
+    }
+
+    .submit-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 14px;
+      padding: 14px 16px;
+      background: linear-gradient(135deg, #8a6dff, #c03aff);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .msg {
+      display: none;
+      text-align: center;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    .msg.success { color: #4ade80; }
+    .msg.error { color: #ff6b6b; }
+
+    .switch-note {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 14px;
+      color: rgba(255,255,255,.72);
+    }
+
+    .switch-note a {
+      color: #8a6dff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="brand">Quiz<span>Master</span></div>
+      <div class="topline">Sign up ya login karo aur quiz start karo.</div>
+
+      <div class="tabs">
+        <button class="tab-btn active" id="showLogin">Login</button>
+        <button class="tab-btn" id="showSignup">Sign Up</button>
+      </div>
+
+      <form class="form active" id="loginForm">
+        <div class="field">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" placeholder="Enter email" required>
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="Enter password" required>
+        </div>
+        <div class="row">
+          <label style="display:flex;align-items:center;gap:8px;">
+            <input type="checkbox" id="rememberMe"> Remember me
+          </label>
+          <a href="#">Forgot password?</a>
+        </div>
+        <button type="submit" class="submit-btn">Login</button>
+        <div class="msg" id="loginMsg"></div>
+      </form>
+
+      <form class="form" id="signupForm">
+        <div class="field">
+          <label for="signupName">Full Name</label>
+          <input type="text" id="signupName" placeholder="Enter full name" required>
+        </div>
+        <div class="field">
+          <label for="signupEmail">Email</label>
+          <input type="email" id="signupEmail" placeholder="Enter email" required>
+        </div>
+        <div class="field">
+          <label for="signupPassword">Password</label>
+          <input type="password" id="signupPassword" placeholder="Create password" required>
+        </div>
+        <button type="submit" class="submit-btn">Create Account</button>
+        <div class="msg" id="signupMsg"></div>
+      </form>
+
+      <p class="switch-note">
+        <span id="switchText">Don't have an account?</span>
+        <a href="#" id="switchLink">Sign Up</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const showLogin = document.getElementById('showLogin');
+    const showSignup = document.getElementById('showSignup');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const switchText = document.getElementById('switchText');
+    const switchLink = document.getElementById('switchLink');
+    const loginMsg = document.getElementById('loginMsg');
+    const signupMsg = document.getElementById('signupMsg');
+
+    function openLogin() {
+      loginForm.classList.add('active');
+      signupForm.classList.remove('active');
+      showLogin.classList.add('active');
+      showSignup.classList.remove('active');
+      switchText.textContent = "Don't have an account?";
+      switchLink.textContent = "Sign Up";
+    }
+
+    function openSignup() {
+      signupForm.classList.add('active');
+      loginForm.classList.remove('active');
+      showSignup.classList.add('active');
+      showLogin.classList.remove('active');
+      switchText.textContent = "Already have an account?";
+      switchLink.textContent = "Login";
+    }
+
+    showLogin.addEventListener('click', openLogin);
+    showSignup.addEventListener('click', openSignup);
+    switchLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (loginForm.classList.contains('active')) openSignup();
+      else openLogin();
+    });
+
+    signupForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('signupName').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const password = document.getElementById('signupPassword').value.trim();
+
+      localStorage.setItem('quizmaster_user', JSON.stringify({ name, email, password }));
+
+      signupMsg.style.display = 'block';
+      signupMsg.className = 'msg success';
+      signupMsg.textContent = 'Account created successfully! Now login.';
+
+      signupForm.reset();
+      setTimeout(openLogin, 900);
+    });
+
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+      const savedUser = JSON.parse(localStorage.getItem('quizmaster_user'));
+
+      if (savedUser && savedUser.email === email && savedUser.password === password) {
+        loginMsg.style.display = 'block';
+        loginMsg.className = 'msg success';
+        loginMsg.textContent = `Welcome, ${savedUser.name}! Redirecting...`;
+
+        setTimeout(() => {
+          window.location.href = 'quiz.html';
+        }, 1200);
+      } else {
+        loginMsg.style.display = 'block';
+        loginMsg.className = 'msg error';
+        loginMsg.textContent = 'Invalid email or password.';
+      }
+    });
+  </script>
+</body>
+</html>
